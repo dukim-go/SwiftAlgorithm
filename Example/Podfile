@@ -1,0 +1,6 @@
+use_frameworks!
+target 'SwiftAlgorithm_Tests' do 
+  platform :osx, '10.13'
+  pod 'SwiftAlgorithm', :path => '../', :testspecs => ['UnitTests']
+
+end 
