@@ -3,28 +3,6 @@ import SwiftAlgorithm
 
 class Queue_Tests: XCTestCase {
     
-    private let range = 0 ..< 10
-    
-    private func queue() -> Queue<Int> {
-        let result = Queue<Int>()
-        range.forEach { result.enqueue($0) }
-        return result
-    }
-    
-    private func array() -> [Int] {
-        var result = [Int]()
-        range.forEach { result.append($0) }
-        return result
-    }
-    
-    override func setUpWithError() throws {
-        
-    }
-    
-    override func tearDownWithError() throws {
-        
-    }
-    
     func testEnqueue() {
         let queue = Queue<Int>()
         var array = [Int]()
