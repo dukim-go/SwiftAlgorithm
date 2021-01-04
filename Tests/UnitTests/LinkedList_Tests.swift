@@ -3,7 +3,7 @@ import SwiftAlgorithm
 
 class LinkedList_Tests: XCTestCase {
     
-    let range = 0 ..< 10
+    private let range = 0 ..< 10
     
     private func linkedList() -> LinkedList<Int> {
         let result = LinkedList<Int>()
@@ -257,7 +257,7 @@ class LinkedList_Tests: XCTestCase {
         }
     }
     
-    func testReferenceCycle() {
+    func testMemoryRelease() {
         var list: LinkedList<Int>? = linkedList()
         weak var first = list?.head
         weak var last = list?.tail
