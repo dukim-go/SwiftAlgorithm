@@ -1,4 +1,4 @@
-public final class Queue<Element> {
+public final class LinkedListQueue<Element> {
     private let list = LinkedList<Element>()
     
     public var front: Element? {

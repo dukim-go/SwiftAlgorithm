@@ -1,7 +1,9 @@
 import XCTest
 import SwiftAlgorithm
 
-class Queue_Tests: XCTestCase {
+class DoubleStackQueue_Tests: XCTestCase {
+        
+    typealias Queue = DoubleStackQueue
     
     func testEnqueue() {
         let queue = Queue<Int>()
