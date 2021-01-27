@@ -46,8 +46,6 @@ extension Array where Element: Equatable {
             var result = [[Element]]()
             
             for i in self {
-                var sub = self
-                sub.remove(object: i)
                 result += permutationsWithRepetition(ofCount: k - 1).map({ [i] + $0 })
             }
             
