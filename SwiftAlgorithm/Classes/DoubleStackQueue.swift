@@ -1,4 +1,4 @@
-public final class DoubleStackQueue<Element> {
+public struct DoubleStackQueue<Element> {
     private var inbox: [Element] = []
     private var outbox: [Element] = []
     
@@ -16,11 +16,11 @@ public final class DoubleStackQueue<Element> {
     
     public init() { }
     
-    public func enqueue(_ n: Element) {
+    public mutating func enqueue(_ n: Element) {
         inbox.append(n)
     }
     
-    public func dequeue() -> Element {
+    public mutating func dequeue() -> Element {
         if outbox.isEmpty {
             outbox = inbox.reversed()
             inbox.removeAll()
@@ -31,7 +31,7 @@ public final class DoubleStackQueue<Element> {
 
 extension DoubleStackQueue {
     
-    public convenience init(_ array: Array<Element>){
+    public init(_ array: Array<Element>){
         self.init()
         
         self.inbox = array
@@ -40,7 +40,7 @@ extension DoubleStackQueue {
 
 extension DoubleStackQueue: ExpressibleByArrayLiteral {
     
-    public convenience init(arrayLiteral elements: Element...) {
+    public init(arrayLiteral elements: Element...) {
         self.init()
         
         self.inbox = elements

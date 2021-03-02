@@ -6,7 +6,7 @@ class DoubleStackQueue_Tests: XCTestCase {
     typealias Queue = DoubleStackQueue
     
     func testEnqueue() {
-        let queue = Queue<Int>()
+        var queue = Queue<Int>()
         var array = [Int]()
         let range = 0 ..< 10
         
@@ -19,7 +19,7 @@ class DoubleStackQueue_Tests: XCTestCase {
     }
     
     func testDequeue() {
-        let queue = Queue<Int>()
+        var queue = Queue<Int>()
         var array = [Int]()
         let range = 0 ..< 10
         

@@ -92,8 +92,7 @@ public struct BinaryHeap<Element: Comparable> {
         heapifyUp(from: 0, to: count - 1)
     }
     
-    @discardableResult
-    public mutating func extract() -> Element {
+    @discardableResult public mutating func extract() -> Element {
         let lastItem = nodes.removeLast()
         if !isEmpty {
             let result = nodes[0]
@@ -104,8 +103,7 @@ public struct BinaryHeap<Element: Comparable> {
         return lastItem
     }
     
-    @discardableResult
-    public mutating func insertThenExtract(_ element: Element) -> Element {
+    @discardableResult public mutating func insertThenExtract(_ element: Element) -> Element {
         var result = element
         if !isEmpty && operation(lhs: nodes[0], rhs: result) {
             swap(&result, &nodes[0])
@@ -114,8 +112,7 @@ public struct BinaryHeap<Element: Comparable> {
         return result
     }
     
-    @discardableResult
-    public mutating func extractThenInsert(_ element: Element) -> Element {
+    @discardableResult public mutating func extractThenInsert(_ element: Element) -> Element {
         let result = nodes[0]
         nodes[0] = element
         heapifyDown(from: 0)
@@ -126,8 +123,7 @@ public struct BinaryHeap<Element: Comparable> {
         return nodes.firstIndex(of: element)
     }
     
-    @discardableResult
-    public mutating func remove(at index: Int) -> Element {
+    @discardableResult public mutating func remove(at index: Int) -> Element {
         let result = nodes[index]
         nodes[index] = nodes.removeLast()
         if index < count {
