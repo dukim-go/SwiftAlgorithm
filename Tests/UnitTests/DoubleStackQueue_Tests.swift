@@ -13,8 +13,10 @@ class DoubleStackQueue_Tests: XCTestCase {
         for element in range {
             queue.enqueue(element)
             array.append(element)
+            XCTAssertEqual(queue.isEmpty, array.isEmpty)
             XCTAssertEqual(queue.count, array.count)
             XCTAssertEqual(queue.front, array.first)
+            XCTAssertEqual(queue.back, array.last)
         }
     }
     
@@ -30,8 +32,10 @@ class DoubleStackQueue_Tests: XCTestCase {
         
         while !queue.isEmpty {
             XCTAssertEqual(queue.dequeue(), array.removeFirst())
+            XCTAssertEqual(queue.isEmpty, array.isEmpty)
             XCTAssertEqual(queue.count, array.count)
             XCTAssertEqual(queue.front, array.first)
+            XCTAssertEqual(queue.back, array.last)
         }
     }
     

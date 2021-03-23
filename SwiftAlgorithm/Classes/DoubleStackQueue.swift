@@ -14,6 +14,10 @@ public struct DoubleStackQueue<Element> {
         return outbox.last ?? inbox.first
     }
     
+    public var back: Element? {
+        return inbox.last ?? outbox.first
+    }
+    
     public init() { }
     
     public mutating func enqueue(_ n: Element) {

@@ -9,6 +9,14 @@ public final class LinkedListQueue<Element> {
         }
     }
     
+    public var back: Element? {
+        if isEmpty {
+            return nil
+        } else {
+            return list.tail?.element
+        }
+    }
+    
     public var count: Int {
         return list.count
     }
