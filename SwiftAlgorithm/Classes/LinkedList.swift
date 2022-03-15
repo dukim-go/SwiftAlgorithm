@@ -1,9 +1,9 @@
 public final class LinkedList<Element> {
     
-    public class LinkedListNode<Element>: CustomStringConvertible {
+    public final class Node: CustomStringConvertible {
         public var element: Element
-        public var next: LinkedListNode?
-        public weak var prev: LinkedListNode?
+        public var next: Node?
+        public weak var prev: Node?
         
         public init(element: Element) {
             self.element = element
@@ -13,8 +13,6 @@ public final class LinkedList<Element> {
             return "\(element)"
         }
     }
-    
-    public typealias Node = LinkedListNode<Element>
     
     public private(set) var head: Node?
     public private(set) var tail: Node?
@@ -199,39 +197,46 @@ extension LinkedList: ExpressibleByArrayLiteral {
 }
 
 extension LinkedList: Collection {
-    public typealias Index = LinkedListIndex<Element>
     
-    public var startIndex: LinkedListIndex<Element> {
-        return LinkedListIndex<Element>(node: head, tag: 0)
-    }
-    
-    public var endIndex: LinkedListIndex<Element> {
-        if let tail = tail {
-            return LinkedListIndex<Element>(node: tail, tag: count)
-            
-        } else {
-            return LinkedListIndex<Element>(node: nil, tag: startIndex.tag)
+    public struct Index: Comparable {
+        
+        public var node: Node?
+        
+        public static func == (lhs: Self, rhs: Self) -> Bool {
+            switch (lhs.node, rhs.node) {
+            case let (left?, right?):
+                return left.next === right.next
+                
+            case (nil, nil):
+                return true
+                
+            default:
+                return false
+            }
+        }
+        
+        public static func < (lhs: Self, rhs: Self) -> Bool {
+            guard lhs != rhs else {
+                return false
+            }
+            let nodes = sequence(first: lhs.node) { $0?.next }
+            return nodes.contains { $0 === rhs.node }
         }
     }
     
+    public var startIndex: Index {
+        return Index(node: head)
+    }
+    
+    public var endIndex: Index {
+        return Index(node: tail?.next)
+    }
+    
     public func index(after i: Index) -> Index {
-        return Index(node: i.node?.next, tag: i.tag + 1)
+        return Index(node: i.node?.next)
     }
     
     public subscript(position: Index) -> Element {
         return position.node!.element
-    }
-}
-
-public struct LinkedListIndex<T>: Comparable {
-    fileprivate let node: LinkedList<T>.LinkedListNode<T>?
-    fileprivate let tag: Int
-    
-    public static func == (lhs: LinkedListIndex<T>, rhs: LinkedListIndex<T>) -> Bool {
-        return lhs.tag == rhs.tag
-    }
-    
-    public static func < (lhs: LinkedListIndex<T>, rhs: LinkedListIndex<T>) -> Bool {
-        return lhs.tag < rhs.tag
     }
 }

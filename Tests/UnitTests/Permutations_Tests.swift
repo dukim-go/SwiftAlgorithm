@@ -1,5 +1,5 @@
 import XCTest
-import SwiftAlgorithm
+@testable import SwiftAlgorithm
 
 class Permutations_Tests: XCTestCase {
     
@@ -18,7 +18,7 @@ class Permutations_Tests: XCTestCase {
         return Int(pow(Double(n), Double(r)))
     }
     
-    func testPermutations() {
+    func testPermutations() throws {
         let count = list.count
         
         let count0 = count
@@ -49,7 +49,7 @@ class Permutations_Tests: XCTestCase {
         XCTAssertEqual(permutations2[2], [2])
     }
     
-    func testPermutationsWithRepetition() {
+    func testPermutationsWithRepetition() throws {
         let count = list.count
         
         let count0 = count + 1

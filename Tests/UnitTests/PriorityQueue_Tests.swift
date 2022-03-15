@@ -1,11 +1,11 @@
 import XCTest
-import SwiftAlgorithm
+@testable import SwiftAlgorithm
 
 class PriorityQueue_Tests: XCTestCase {
     
     private let list = [8, 6, 20, 17, 24, 21, 14, 15, 2, 7]
     
-    func testEmpty() {
+    func testEmpty() throws {
         let maxQueue = PriorityQueue<Int>(orderType: .max)
         XCTAssertTrue(maxQueue.isEmpty)
         XCTAssertEqual(maxQueue.count, 0)
@@ -17,7 +17,7 @@ class PriorityQueue_Tests: XCTestCase {
         XCTAssertNil(minQueue.peek)
     }
     
-    func testMaxQueue() {
+    func testMaxQueue() throws {
         var maxArray = [Int]()
         var maxQueue = PriorityQueue<Int>(orderType: .max)
         
@@ -35,7 +35,7 @@ class PriorityQueue_Tests: XCTestCase {
         }
     }
     
-    func testMinQueue() {
+    func testMinQueue() throws {
         var minArray = [Int]()
         var minQueue = PriorityQueue<Int>(orderType: .min)
         

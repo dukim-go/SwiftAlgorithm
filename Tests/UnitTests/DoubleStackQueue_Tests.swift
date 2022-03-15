@@ -1,46 +1,45 @@
 import XCTest
-import SwiftAlgorithm
+@testable import SwiftAlgorithm
 
 class DoubleStackQueue_Tests: XCTestCase {
         
     typealias Queue = DoubleStackQueue
     
-    func testEnqueue() {
-        var queue = Queue<Int>()
-        var array = [Int]()
+    func testEnqueue() throws {
         let range = 0 ..< 10
+        var array = [Int]()
+        var queue = Queue<Int>()
         
         for element in range {
             queue.enqueue(element)
             array.append(element)
-            XCTAssertEqual(queue.isEmpty, array.isEmpty)
-            XCTAssertEqual(queue.count, array.count)
+            
+            XCTAssertEqual(queue.list, queue.map({ $0 }))
             XCTAssertEqual(queue.front, array.first)
             XCTAssertEqual(queue.back, array.last)
+            XCTAssertEqual(queue.count, array.count)
+            XCTAssertEqual(queue.isEmpty, array.isEmpty)
         }
     }
     
-    func testDequeue() {
-        var queue = Queue<Int>()
-        var array = [Int]()
+    func testDequeue() throws {
         let range = 0 ..< 10
-        
-        for element in range {
-            queue.enqueue(element)
-            array.append(element)
-        }
+        var array = range.map({ $0 })
+        var queue = Queue<Int>(array)
         
         while !queue.isEmpty {
             XCTAssertEqual(queue.dequeue(), array.removeFirst())
-            XCTAssertEqual(queue.isEmpty, array.isEmpty)
-            XCTAssertEqual(queue.count, array.count)
+            
+            XCTAssertEqual(queue.list, queue.map({ $0 }))
             XCTAssertEqual(queue.front, array.first)
             XCTAssertEqual(queue.back, array.last)
+            XCTAssertEqual(queue.count, array.count)
+            XCTAssertEqual(queue.isEmpty, array.isEmpty)
         }
     }
     
-    func testMemoryRelease() {
-        class Wrapper<T> {
+    func testMemoryRelease() throws {
+        final class Wrapper<T> {
             let value: T
             
             init(_ value: T) {
@@ -48,7 +47,7 @@ class DoubleStackQueue_Tests: XCTestCase {
             }
         }
         
-        var queue: Queue<Wrapper<Int>>? = Queue<Wrapper<Int>>()
+        var queue: Queue<Wrapper<Int>>? = .init()
         queue?.enqueue(Wrapper(0))
         queue?.enqueue(Wrapper(1))
         weak var first = queue?.dequeue()

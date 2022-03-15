@@ -1,5 +1,5 @@
 import XCTest
-import SwiftAlgorithm
+@testable import SwiftAlgorithm
 
 class BinaryHeap_Tests: XCTestCase {
     
@@ -13,7 +13,7 @@ class BinaryHeap_Tests: XCTestCase {
     
     // Common Heap test
     
-    func testEmpty() {
+    func testEmpty() throws {
         let maxHeap = Heap<Int>(orderType: .max)
         XCTAssertTrue(maxHeap.isEmpty)
         XCTAssertEqual(maxHeap.count, 0)
@@ -27,7 +27,7 @@ class BinaryHeap_Tests: XCTestCase {
     
     // Max Heap test
     
-    func testMaxHeap_Build() {
+    func testMaxHeap_Build() throws {
         var maxArray = list0.sorted(by: >)
         var maxHeap = Heap<Int>(orderType: .max, array: list0)
         
@@ -37,7 +37,7 @@ class BinaryHeap_Tests: XCTestCase {
         }
     }
     
-    func testMaxHeap_insert() {
+    func testMaxHeap_insert() throws {
         var maxArray = [Int]()
         var maxHeap = Heap<Int>(orderType: .max)
         
@@ -50,7 +50,7 @@ class BinaryHeap_Tests: XCTestCase {
         }
     }
     
-    func testMaxHeap_extract() {
+    func testMaxHeap_extract() throws {
         var maxArray = [Int]()
         var maxHeap = Heap<Int>(orderType: .max)
         
@@ -68,7 +68,7 @@ class BinaryHeap_Tests: XCTestCase {
         }
     }
     
-    func testMaxHeap_insertThenExtract() {
+    func testMaxHeap_insertThenExtract() throws {
         var maxArray = list0.sorted(by: >)
         var maxHeap = Heap<Int>(orderType: .max, array: list0)
         
@@ -81,7 +81,7 @@ class BinaryHeap_Tests: XCTestCase {
         }
     }
     
-    func testMaxHeap_extractThenInsert() {
+    func testMaxHeap_extractThenInsert() throws {
         var maxArray = list0.sorted(by: >)
         var maxHeap = Heap<Int>(orderType: .max, array: list0)
         
@@ -94,7 +94,7 @@ class BinaryHeap_Tests: XCTestCase {
         }
     }
     
-    func testMaxHeap_findIndex_remove() {
+    func testMaxHeap_findIndex_remove() throws {
         var maxArray = list0.sorted(by: >)
         var maxHeap = Heap<Int>(orderType: .max, array: list0)
         
@@ -111,7 +111,7 @@ class BinaryHeap_Tests: XCTestCase {
         }
     }
     
-    func testMaxHeap_decreaseKey_udtate() {
+    func testMaxHeap_decreaseKey_udtate() throws {
         var maxArray = list0.sorted(by: >)
         var maxHeap = Heap<Int>(orderType: .max, array: list0)
         
@@ -129,7 +129,7 @@ class BinaryHeap_Tests: XCTestCase {
         }
     }
     
-    func testMaxHeap_increaseKey_udtate() {
+    func testMaxHeap_increaseKey_udtate() throws {
         var maxArray = list0.sorted(by: >)
         var maxHeap = Heap<Int>(orderType: .max, array: list0)
         
@@ -149,7 +149,7 @@ class BinaryHeap_Tests: XCTestCase {
     
     // Min Heap test
     
-    func testMinHeap_Build() {
+    func testMinHeap_Build() throws {
         var minArray = list0.sorted(by: <)
         var minHeap = Heap<Int>(orderType: .min, array: list0)
         
@@ -159,7 +159,7 @@ class BinaryHeap_Tests: XCTestCase {
         }
     }
     
-    func testMinHeap_insert() {
+    func testMinHeap_insert() throws {
         var minArray = [Int]()
         var minHeap = Heap<Int>(orderType: .min)
         
@@ -172,7 +172,7 @@ class BinaryHeap_Tests: XCTestCase {
         }
     }
     
-    func testMinHeap_extract() {
+    func testMinHeap_extract() throws {
         var minArray = [Int]()
         var minHeap = Heap<Int>(orderType: .min)
         
@@ -190,7 +190,7 @@ class BinaryHeap_Tests: XCTestCase {
         }
     }
     
-    func testMinHeap_insertThenExtract() {
+    func testMinHeap_insertThenExtract() throws {
         var minArray = list0.sorted(by: <)
         var minHeap = Heap<Int>(orderType: .min, array: list0)
         
@@ -203,7 +203,7 @@ class BinaryHeap_Tests: XCTestCase {
         }
     }
     
-    func testMinHeap_extractThenInsert() {
+    func testMinHeap_extractThenInsert() throws {
         var minArray = list0.sorted(by: <)
         var minHeap = Heap<Int>(orderType: .min, array: list0)
         
@@ -216,7 +216,7 @@ class BinaryHeap_Tests: XCTestCase {
         }
     }
     
-    func testMinHeap_findIndex_remove() {
+    func testMinHeap_findIndex_remove() throws {
         var minArray = list0.sorted(by: <)
         var minHeap = Heap<Int>(orderType: .min, array: list0)
         
@@ -233,7 +233,7 @@ class BinaryHeap_Tests: XCTestCase {
         }
     }
     
-    func testMinHeap_decreaseKey_udtate() {
+    func testMinHeap_decreaseKey_udtate() throws {
         var minArray = list0.sorted(by: <)
         var minHeap = Heap<Int>(orderType: .min, array: list0)
         
@@ -251,7 +251,7 @@ class BinaryHeap_Tests: XCTestCase {
         }
     }
     
-    func testMinHeap_increaseKey_udtate() {
+    func testMinHeap_increaseKey_udtate() throws {
         var minArray = list0.sorted(by: <)
         var minHeap = Heap<Int>(orderType: .min, array: list0)
         

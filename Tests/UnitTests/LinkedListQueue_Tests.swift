@@ -1,46 +1,43 @@
 import XCTest
-import SwiftAlgorithm
+@testable import SwiftAlgorithm
 
 class LinkedListQueue_Tests: XCTestCase {
     
     typealias Queue = LinkedListQueue
     
-    func testEnqueue() {
-        let queue = Queue<Int>()
-        var array = [Int]()
+    func testEnqueue() throws {
         let range = 0 ..< 10
+        var array = [Int]()
+        let queue = Queue<Int>()
         
         for element in range {
             queue.enqueue(element)
             array.append(element)
-            XCTAssertEqual(queue.isEmpty, array.isEmpty)
-            XCTAssertEqual(queue.count, array.count)
+            
             XCTAssertEqual(queue.front, array.first)
             XCTAssertEqual(queue.back, array.last)
+            XCTAssertEqual(queue.count, array.count)
+            XCTAssertEqual(queue.isEmpty, array.isEmpty)
         }
     }
     
-    func testDequeue() {
-        let queue = Queue<Int>()
-        var array = [Int]()
+    func testDequeue() throws {
         let range = 0 ..< 10
-        
-        for element in range {
-            queue.enqueue(element)
-            array.append(element)
-        }
+        var array = range.map({ $0 })
+        let queue = Queue<Int>(array)
         
         while !queue.isEmpty {
             XCTAssertEqual(queue.dequeue(), array.removeFirst())
-            XCTAssertEqual(queue.isEmpty, array.isEmpty)
-            XCTAssertEqual(queue.count, array.count)
+            
             XCTAssertEqual(queue.front, array.first)
             XCTAssertEqual(queue.back, array.last)
+            XCTAssertEqual(queue.count, array.count)
+            XCTAssertEqual(queue.isEmpty, array.isEmpty)
         }
     }
     
-    func testMemoryRelease() {
-        class Wrapper<T> {
+    func testMemoryRelease() throws {
+        final class Wrapper<T> {
             let value: T
             
             init(_ value: T) {

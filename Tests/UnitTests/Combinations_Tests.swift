@@ -1,5 +1,5 @@
 import XCTest
-import SwiftAlgorithm
+@testable import SwiftAlgorithm
 
 class Combinations_Tests: XCTestCase {
     
@@ -14,7 +14,7 @@ class Combinations_Tests: XCTestCase {
         }
     }
     
-    func testCombinations() {
+    func testCombinations() throws {
         let count = list.count
         
         let count0 = count
@@ -37,7 +37,7 @@ class Combinations_Tests: XCTestCase {
         XCTAssertEqual(combinations2[2], [2])
     }
     
-    func testCombinationsWithRepetition() {
+    func testCombinationsWithRepetition() throws {
         let count = list.count
         
         let count0 = count + 1

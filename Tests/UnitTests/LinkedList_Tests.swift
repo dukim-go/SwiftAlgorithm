@@ -1,5 +1,5 @@
 import XCTest
-import SwiftAlgorithm
+@testable import SwiftAlgorithm
 
 class LinkedList_Tests: XCTestCase {
     
@@ -11,19 +11,19 @@ class LinkedList_Tests: XCTestCase {
         return result
     }
     
-    func testCount() {
+    func testCount() throws {
         let list = linkedList()
         XCTAssertEqual(list.count, range.count)
     }
 
-    func testSubscript() {
+    func testSubscript() throws {
         let list = linkedList()
         for i in 0 ..< list.count {
             XCTAssertEqual(range[i], list[i])
         }
     }
 
-    func testNodeAtIndex() {
+    func testNodeAtIndex() throws {
         let list = linkedList()
 
         let first = list.node(at: 0)
@@ -43,7 +43,7 @@ class LinkedList_Tests: XCTestCase {
         }
     }
 
-    func testAppendElement() {
+    func testAppendElement() throws {
         let list = LinkedList<Int>()
         list.append(0)
         XCTAssertEqual(list[0], 0)
@@ -53,7 +53,7 @@ class LinkedList_Tests: XCTestCase {
         XCTAssertEqual(list[2], 2)
     }
 
-    func testAppendNode() {
+    func testAppendNode() throws {
         let list = LinkedList<Int>()
         list.append(LinkedList<Int>.Node(element: 0))
         XCTAssertEqual(list[0], 0)
@@ -63,7 +63,7 @@ class LinkedList_Tests: XCTestCase {
         XCTAssertEqual(list[2], 2)
     }
 
-    func testAppendList() {
+    func testAppendList() throws {
         let list = linkedList()
         let countOfList = list.count
 
@@ -88,7 +88,7 @@ class LinkedList_Tests: XCTestCase {
         }
     }
 
-    func testInsertElementAtIndex() {
+    func testInsertElementAtIndex() throws {
         let list = LinkedList<Int>()
 
         // first insert
@@ -113,7 +113,7 @@ class LinkedList_Tests: XCTestCase {
         XCTAssertEqual(list.tail?.element, lastElement)
     }
 
-    func testInsertNodeAtIndex() {
+    func testInsertNodeAtIndex() throws {
         let list = LinkedList<Int>()
 
         // first insert
@@ -138,7 +138,7 @@ class LinkedList_Tests: XCTestCase {
         XCTAssertTrue(list.tail === last)
     }
 
-    func testInsertListAtIndex() {
+    func testInsertListAtIndex() throws {
         let list = linkedList()
         let countOfList = list.count
 
@@ -163,7 +163,7 @@ class LinkedList_Tests: XCTestCase {
         }
     }
     
-    func testRemoveAll() {
+    func testRemoveAll() throws {
         let list = linkedList()
         
         list.removeAll()
@@ -172,7 +172,7 @@ class LinkedList_Tests: XCTestCase {
         XCTAssertNil(list.tail)
     }
     
-    func testRemoveNode() {
+    func testRemoveNode() throws {
         let list = linkedList()
         var numbers = list.map({ $0 })
         
@@ -204,7 +204,7 @@ class LinkedList_Tests: XCTestCase {
         }
     }
     
-    func testRemoveAtIndex() {
+    func testRemoveAtIndex() throws {
         let list = linkedList()
         var numbers = list.map({ $0 })
         
@@ -233,7 +233,7 @@ class LinkedList_Tests: XCTestCase {
         }
     }
     
-    func testRemoveFirst() {
+    func testRemoveFirst() throws {
         let list = linkedList()
         var numbers = list.map({ $0 })
         
@@ -245,7 +245,7 @@ class LinkedList_Tests: XCTestCase {
         }
     }
     
-    func testRemoveLast() {
+    func testRemoveLast() throws {
         let list = linkedList()
         var numbers = list.map({ $0 })
         
@@ -257,7 +257,7 @@ class LinkedList_Tests: XCTestCase {
         }
     }
     
-    func testMemoryRelease() {
+    func testMemoryRelease() throws {
         var list: LinkedList<Int>? = linkedList()
         weak var first = list?.head
         weak var last = list?.tail
